@@ -1,0 +1,271 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar h1 {
+  font-size: 24px;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* CONTENEDOR DE PRODUCTOS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+/* TARJETAS */
+.card {
+  background: #fff7f7;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+/* IMÁGENES */
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* BOTÓN */
+.card .btn {
+  margin-top: auto;
+}
+.container h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Precio */
+.card p {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Botón */
+.btn {
+  background: #a77171;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #005f3a;
+}
+
+/* Total carrito */
+#total {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #391e1e;
+  font-weight: bold;
+}
+
+#auth {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#auth a, #auth button {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* CARRITO BONITO */
+.item {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.precio {
+  color: #391e1e;
+  font-weight: bold;
+}
+
+.cantidad {
+  margin-top: 10px;
+}
+
+.cantidad button {
+  background: #a57474;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.acciones button {
+  background: #a57474;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* CONTENEDOR DE BOTONES */
+.acciones-carrito {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* BOTÓN VACIAR */
+.btn-vaciar {
+  background: #a57474;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-vaciar:hover {
+  background: #8c5f5f;
+}
+
+/* BOTÓN COMPRAR */
+.btn-comprar {
+  background: #a57474;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-comprar:hover {
+  background: #8c5f5f;
+  transform: scale(1.05);
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.btn {
+  background-color: #be7b7b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #be7b7b;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img {
+  height: 300%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Navbar mejorado */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 30px;
+  background-color: #be7b7b;;
+}
+
+body {
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 300%;
+  margin-left: -60px;
+}
+
+.logo img {
+  height: 100%;
+  object-fit: contain;
+  transform: translateY(6px);
+}
+
+body {
+  margin: 0;
+  background-color: #fae0d9;
+  background-image: url("../images/bg-cafe.png");
+  background-size: 300px;
+  background-repeat: repeat;
+  opacity: 0.95;
+}
