@@ -1,3 +1,4 @@
+// Recuperación y procesamiento del carrito almacenado
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const contenedor = document.getElementById("carrito");
@@ -106,6 +107,7 @@ function comprar() {
         total: total
     };
 
+    // Almacenamiento temporal en SessionStorage para el checkout
     sessionStorage.setItem("pedidoPendiente", JSON.stringify(datosPedido));
 
     // Redirigimos a la pantalla de pago

@@ -1,7 +1,9 @@
 <?php
+// Configuración de visualización de errores para etapa de desarrollo
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Importación del controlador de pedidos para gestionar la lógica de negocio
 require_once '../controlador/controller_pedidos.php';
 ?>
 
@@ -138,10 +140,11 @@ require_once '../controlador/controller_pedidos.php';
     <section id="page" class="commonsection">
         <div>
             <?php
+            // Bloque para mostrar mensajes de retroalimentación al usuario (Éxito o Error)
             if (!empty($_GET['respuesta'])) {
                 $respuesta = $_GET['respuesta'];
                 if (!empty($_GET['o'])) {
-                    $o = $_GET['o'];
+                    $o = $_GET['o']; // Operación realizada (editado, guardado, etc.)
                 }
                 if ($respuesta == "correcto") {
                     ?>
@@ -180,9 +183,11 @@ require_once '../controlador/controller_pedidos.php';
                     <form action="../controlador/controller_pedidos.php?action=editar" method="POST">
 
                         <?php
+                        // Captura del ID del pedido desde la URL y consulta al controlador
                         $id = $_GET['IdPedido'];
                         $objpedidos = controller_pedidos::buscarID($id);
 
+                        // Verificación de existencia del pedido y renderizado de campos
                         if (!empty($objpedidos)) {
                             foreach ($objpedidos as $value) {
                                 ?>  

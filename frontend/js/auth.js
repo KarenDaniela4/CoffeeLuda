@@ -1,9 +1,11 @@
+// Manejo del formulario de Login mediante peticiones asíncronas
 document.getElementById("loginForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
+// Comunicación con el servidor mediante Fetch (envío de JSON)
   fetch("backend/login.php", {
     method: "POST",
     headers: {

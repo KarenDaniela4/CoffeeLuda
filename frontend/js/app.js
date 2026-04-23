@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+// Datos locales de productos (simulación de catálogo)
   const productos = [
     { id: 1, nombre: "Espresso", precio: 7000 },
     { id: 2, nombre: "Capuccino", precio: 9000 },
@@ -10,13 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!contenedor) return;
 
+// Diccionario para asignar imágenes dinámicamente según el nombre del producto
   const imagenes = {
     "Espresso": "espresso.jpg",
     "Capuccino": "capuccino.jpg",
     "Latte": "latte.jpg"
   };
 
-  productos.forEach(p => {
+  // Renderizado dinámico: Crea las tarjetas (cards) de productos en el HTML
+    productos.forEach(p => {
     contenedor.innerHTML += `
       <div class="card">
         <img src="images/${imagenes[p.nombre]}" alt="${p.nombre}">
@@ -29,9 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   });
 
-  mostrarAuth();
+  mostrarAuth(); // Verifica el estado de sesión al cargar la página
 });
 
+// Función para persistir productos seleccionados en el LocalStorage
 function agregar(id) {
 
   const productos = [
@@ -41,7 +44,7 @@ function agregar(id) {
   ];
 
   const producto = productos.find(p => p.id == id);
-
+// Recupera el carrito actual o crea uno vacío si es la primera vez
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   carrito.push(producto);

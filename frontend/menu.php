@@ -31,6 +31,7 @@ $email = $_SESSION['email'] ?? 'Invitado';
                     <a href="registro.php">Registro</a>
                 <?php elseif ($rol == 1): ?>
                     <!-- Administrador -->
+                    <a href="RegistrarProducto.php">Registrar Productos</a>
                     <a href="productosform.php">Gestionar Productos</a>
                     <a href="gestion_usuarios.php">Usuarios</a>
                 <?php else: ?>

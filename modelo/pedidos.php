@@ -1,9 +1,14 @@
 <?php 
-
+// Requerimiento de la clase base de conexión para heredar sus métodos PDO
 require_once('../modelo/conexion.php');
 
+/**
+ * Clase Pedidos: Representa la entidad en la base de datos
+ * Hereda de la clase 'conexion' para realizar operaciones CRUD
+ */
 class pedidos extends conexion {
 
+    // Atributos privados (Encapsulamiento)
     private $IdProducto;
     private $Cantidad;
     private $Total;
@@ -60,9 +65,12 @@ class pedidos extends conexion {
     }
 
         
-    // CONSTRUCTOR
+    /**
+     * Constructor de la clase
+     * Inicializa el objeto con un array de datos o valores nulos
+     */
     public function __construct($data = array()) {
-    parent::__construct();
+    parent::__construct(); // Llama al constructor de 'conexion' para activar PDO
     if (!empty($data)) {
         $this->Cantidad   = $data['Cantidad'] ?? null;
         $this->Total      = $data['Total'] ?? null;
@@ -73,11 +81,14 @@ class pedidos extends conexion {
     }
 }
 
+    // Destructor: Asegura el cierre de la conexión al terminar el script
     function __destruct() {
         $this->Disconnect();
     }
 
-    // CREATE (INSERTAR)
+    /**
+     * OPERACIÓN CREATE: Inserta un nuevo pedido en la tabla
+     */
     public function insertar() {
         $sql = "INSERT INTO pedidos(IdProducto, Cantidad, Total, Fecha, IdPedido, id_usuario) VALUES (?, ?, ?, ?, ?, ?)";
         $this->insertRow($sql, array(
@@ -114,7 +125,16 @@ class pedidos extends conexion {
         return $dato;
     }
 
-    // UPDATE (EDITAR)
+      public static function getByIdpedido() {
+        $tmp = new pedidos();
+        $dato = $tmp->getRow("SELECT IdPedido FROM pedidos ORDER BY IdPedido DESC LIMIT 1 ");
+        $tmp->Disconnect();
+        return $dato;
+    }
+    
+    /**
+     * OPERACIÓN UPDATE: Modifica los datos de un pedido existente
+     */
     public function editar() {
         $sql = "UPDATE pedidos SET Cantidad = ?, Total = ?, Fecha = ? id_usuario = ?  WHERE IdProducto = ? AND IdPedido = ?";
         $this->updateRow($sql, array(
@@ -128,7 +148,9 @@ class pedidos extends conexion {
         ));
     }
 
-    // DELETE (ELIMINAR)
+    /**
+     * OPERACIÓN DELETE: Elimina un registro basándose en su ID compuesto
+     */
     public function eliminar() {
         $sql = "DELETE FROM pedidos WHERE IdPedido = ? and IdProducto = ?";
         $this->updateRow($sql, array(
@@ -137,6 +159,10 @@ class pedidos extends conexion {
                 ));
     }
     
+    /**
+     * OPERACIÓN READ: Obtiene el historial de compras de un usuario específico
+     * Implementa un INNER JOIN para traer los nombres de los productos
+     */
     static public function buscarPorUsuario($id) {
     $sql = "SELECT p.*, pr.Producto AS nombre_producto 
             FROM pedidos p 

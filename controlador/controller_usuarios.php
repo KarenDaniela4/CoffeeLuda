@@ -1,13 +1,15 @@
 <?php
-
+// Importación del modelo de usuarios
 require_once(__DIR__ . '/../modelo/usuarios.php');
 
+// Evita la ejecución directa del controlador si no hay una acción definida
 if (basename($_SERVER['PHP_SELF']) == 'controller_usuarios.php' && !empty($_GET['action'])) {
     controller_usuarios::main($_GET['action']);
 }
 
 class controller_usuarios {
 
+    // Enrutador de funciones de usuario (Registro, Login, Gestión)
     static function main($action) {
         if ($action == "crear") {
             controller_usuarios::crear();
@@ -26,6 +28,7 @@ class controller_usuarios {
         }
     }
 
+    // Procesa el autoregistro de nuevos clientes en la plataforma
     static public function registrarNuevo() {
         try {
             $datos = array(
@@ -129,6 +132,7 @@ class controller_usuarios {
         }
     }
 
+    // Proceso de Login: Valida credenciales y crea la sesión del usuario
     public static function validacion() {
         try {
             if (session_status() === PHP_SESSION_NONE) {
@@ -141,6 +145,7 @@ class controller_usuarios {
             $usuarioEncontrado = usuarios::validacion($email, $contra);
 
             if ($usuarioEncontrado) {
+                // Almacenamiento de datos clave en la superglobal $_SESSION
                 $_SESSION['email'] = $usuarioEncontrado['email'];
                 $_SESSION['idrol'] = $usuarioEncontrado['id_rol'];
                 $_SESSION['id_usuario'] = $usuarioEncontrado['id'];
@@ -153,7 +158,8 @@ class controller_usuarios {
             header("Location: ../frontend/login.php?respuesta=error");
         }
     }
-
+    
+    // Finaliza la sesión actual y redirige al inicio
     public static function cerrars() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();

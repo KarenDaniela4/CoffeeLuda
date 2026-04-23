@@ -1,16 +1,25 @@
 <?php
+/**
+ * VISTA: EDICIÓN DE PRODUCTOS
+ * Permite a los administradores modificar la información de un café existente.
+ */
 session_start();
+
+// Control de Acceso: Solo usuarios autorizados pueden entrar a esta vista
 if (file_exists('../controlador/control_acceso.php')) {
     require_once '../controlador/control_acceso.php';
 }
 
 require_once '../controlador/controller_productos.php';
 
+// Verificación de parámetro: Se requiere el ID del producto para consultar sus datos actuales
 if (isset($_GET['IdProducto'])) {
     $id = $_GET['IdProducto'];
+    // Invocación al controlador para obtener los datos específicos del producto
     $objProductos = controller_productos::buscarID($id);
 } else {
     
+    // Redirección de seguridad si se intenta entrar sin un ID válido
     header("Location: productos.php?error=sin_id");
     exit();
 }

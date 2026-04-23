@@ -1,12 +1,14 @@
 <?php
+// Importación del modelo de productos para lógica de inventario
 require_once(__DIR__ . '/../modelo/productos.php');
 
-
+// Enrutador de acciones basadas en parámetros GET
 if (!empty($_GET['action'])) {
     controller_productos::main($_GET['action']);
     $action = $_GET['action'];
 }
 class controller_productos {
+    // Método principal para la distribución de tareas del controlador
     static function main($action) {
         if ($action == "crear") {
             controller_productos::crear();
@@ -22,6 +24,8 @@ class controller_productos {
         }
        
     }
+    
+    // Registra un nuevo producto capturando datos del formulario administrativo
     static public function crear() {
         try {
                 $arrayproductos = array();
@@ -36,6 +40,8 @@ class controller_productos {
               echo $e->getMessage();
              }
     }
+    
+    // Actualiza la información (nombre o precio) de un producto existente
     static public function editar() {
         try {
             $arrayproductos = array();            
@@ -71,6 +77,8 @@ class controller_productos {
             echo"<script languaje='javascript'>window.location='../buscar.php?respuesta=error&o=encontrad'</script>;";
         }
     }
+    
+    // Elimina un producto del catálogo mediante su identificador único
     static public function eliminar() {
         try {
             $arrayproductos = array();
