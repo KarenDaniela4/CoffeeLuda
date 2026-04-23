@@ -1,88 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Registro - Coffee Luda</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro - Coffee Luda</title>
 
-  <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/styles.css">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
 
-      background: url("images/bg-cafe.png");
-      background-size: 300px;
-      background-repeat: repeat;
-      background-position: center;
+                background: url("images/bg-cafe.png");
+                background-size: 300px;
+                background-repeat: repeat;
+                background-position: center;
 
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-    .container {
-      background: #be7b7b;
-      padding: 40px;
-      transform: translateY(100px);
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      text-align: center;
-    }
+            .container {
+                background: #be7b7b;
+                padding: 40px;
+                transform: translateY(150px);
+                border-radius: 12px;
+                width: 320px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                text-align: center;
+            }
 
-    .logo-login {
-      width: 180px;
-      margin-top: -60px;
-      margin-bottom: -50px;
-    }
+            .logo-login {
+                width: 180px;
+                margin-top: -60px;
+                margin-bottom: -50px;
+            }
 
-    h2 {
-      margin-bottom: 15px;
-      color: white;
-    }
+            h2 {
+                margin-bottom: 15px;
+                color: white;
+            }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-    }
+            input {
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border-radius: 8px;
+                border: none;
+                outline: none;
+            }
 
-    input:focus {
-      box-shadow: 0 0 5px white;
-    }
+            input:focus {
+                box-shadow: 0 0 5px white;
+            }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #ebb4b4;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+            button {
+                width: 100%;
+                padding: 10px;
+                background: #ebb4b4;
+                color: black;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
 
-    button:hover {
-      background: #daaaaa;
-    }
+            button:hover {
+                background: #daaaaa;
+            }
 
-    .link {
-      margin-top: 15px;
-      display: block;
-      color: white;
-      text-decoration: none;
-    }
+            .link {
+                margin-top: 15px;
+                display: block;
+                color: white;
+                text-decoration: none;
+            }
 
-    .link:hover {
-      text-decoration: underline;
-    }
-    
-    .navbar {
+            .link:hover {
+                text-decoration: underline;
+            }
+
+            .navbar {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -113,48 +113,48 @@
                 align-items: center;
                 transform: translateY(-3px);
             }
-  </style>
-</head>
+        </style>
+    </head>
 
-<body>
-    <nav class="navbar">
+    <body>
+        <nav class="navbar">
             <div class="nav-left">
                 <a href="index.php" class="logo-nav">
                     <img src="images/logo.png" alt="Coffee Luda">
                 </a>
             </div>
-        
-        <div class="nav-right">
+
+            <div class="nav-right">
                 <a href="menu.php">Menú</a>
             </div>
         </nav>
 
-  <div class="container">
+        <div class="container">
 
-    <img src="images/logo.png" class="logo-login" alt="Coffee Luda">
+            <img src="images/logo.png" class="logo-login" alt="Coffee Luda">
 
-    <h2>Crear cuenta</h2>
+            <h2>Crear cuenta</h2>
 
-    <input type="text" id="id" placeholder="Id">
-    <input type="text" id="nombre" placeholder="Nombre">
-    <input type="text" id="apellido" placeholder="Apellido">
-    <input type="text" id="telefono" placeholder="Teléfono">
-    <input type="email" id="email" placeholder="Correo electrónico">
-    <input type="password" id="password" placeholder="Contraseña">
-    <input type="confirmpassword" id="confirmPassword" placeholder="Confirmar contraseña">
-    <input type="pregunta" id="pregunta" placeholder="Pregunta">
-    <input type="respuesta" id="respuesta" placeholder="Respuesta">
-    <input type='hidden' name='id_rol' value ='2'>
-    
-    <button type="button" onclick="registro()">Registrarse</button>
+            <input type="text" id="id" placeholder="Id" required>
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="text" id="apellido" placeholder="Apellido" required>
+            <input type="text" id="telefono" maxlength="10" placeholder="Teléfono" onkeypress="return soloNumeros(event)">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+            <input type="text" id="pregunta" placeholder="Pregunta" required>
+            <input type="text" id="respuesta" placeholder="Respuesta" required>
+            <input type='hidden' name='id_rol' value ='2'>
 
-    <p id="mensaje"></p>
+            <button type="button" onclick="registro()">Registrarse</button>
 
-    <a href="login.php" class="link">¿Ya tienes cuenta? Inicia sesión</a>
+            <p id="mensaje"></p>
 
-  </div>
+            <a href="login.php" class="link">¿Ya tienes cuenta? Inicia sesión</a>
 
-  <script src="js/registro.js"></script>
+        </div>
 
-</body>
+        <script src="js/registro.js"></script>
+
+    </body>
 </html>

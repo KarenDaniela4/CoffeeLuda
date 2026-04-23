@@ -133,7 +133,11 @@
 
                 <button type="submit">Entrar</button>
 
-                <p id="error" class="error"></p>
+                <?php if (isset($_GET['respuesta']) && $_GET['respuesta'] == 'error'): ?>
+                    <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; border: 1px solid #f5c6cb; margin-bottom: 15px; text-align: center;">
+                        <strong>⚠️ Error:</strong> El correo o la contraseña son incorrectos.
+                    </div>
+                <?php endif; ?>
 
                 <a href="registro.php" class="link">¿No tienes cuenta? Regístrate</a>
             </div>

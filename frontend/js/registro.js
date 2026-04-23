@@ -4,7 +4,7 @@
  */
 function registro() {
     const mensaje = document.getElementById("mensaje");
-    
+
     // Captura de valores desde el DOM
     const id = document.getElementById("id").value;
     const nombre = document.getElementById("nombre").value;
@@ -17,16 +17,31 @@ function registro() {
     const respuesta = document.getElementById("respuesta").value;
 
 // Validación de campos obligatorios para integridad de la DB
-    if (!email || !password || !id) {
-        mensaje.innerHTML = "<span style='color: red;'>ID, Email y Password son obligatorios</span>";
+    // Validación de TODOS los campos obligatorios
+    // Validación de TODOS los campos obligatorios
+    if (!id || !nombre || !apellido || !telefono || !email || !password || !confirm || !pregunta || !respuesta) {
+        mensaje.innerHTML = "<span style='color: red;'>⚠️ Todos los campos son obligatorios para el registro.</span>";
         return;
     }
+
+    //Validación de longitud
+    if (telefono.length !== 10) {
+        mensaje.innerHTML = "<span style='color: red;'>⚠️ El teléfono debe tener exactamente 10 dígitos.</span>";
+        return;
+    }
+
     // Validación de concordancia de contraseñas (Seguridad del lado del cliente)
     if (password !== confirm) {
         mensaje.innerHTML = "<span style='color: red;'>Las contraseñas no coinciden</span>";
         return;
     }
-
+    
+    //Validación de formato de correo (Regex)
+    const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!expresionCorreo.test(email)) {
+        mensaje.innerHTML = "<span style='color: red;'>⚠️ Ingresa un correo electrónico válido (ejemplo@correo.com).</span>";
+        return;
+    }
     /**
      * Objeto FormData: Empaqueta los datos para enviarlos con la misma 
      * estructura que un formulario HTML tradicional (multipart/form-data)
@@ -47,21 +62,32 @@ function registro() {
         method: "POST",
         body: datosParaEnviar
     })
-    .then(res => res.text()) // Se espera una respuesta de texto plano desde el controlador
-    .then(respuestaServidor => {
-        // Validación de la respuesta personalizada enviada por el controlador PHP
-        if (respuestaServidor.includes("registro_exitoso")) {
-            mensaje.innerHTML = "<span style='color: green;'>¡Cuenta creada! Redirigiendo...</span>";
-            // Temporizador para mejorar la experiencia de usuario (UX)
-            setTimeout(() => {
-                window.location.href = "login.php";
-            }, 2000);
-        } else {
-            mensaje.innerHTML = "<span style='color: red;'>Error: " + respuestaServidor + "</span>";
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        mensaje.innerHTML = "Error de conexión con el servidor";
-    });
+            .then(res => res.text()) // Se espera una respuesta de texto plano desde el controlador
+            .then(respuestaServidor => {
+                // Validación de la respuesta personalizada enviada por el controlador PHP
+                if (respuestaServidor.includes("registro_exitoso")) {
+                    mensaje.innerHTML = "<span style='color: green;'>¡Cuenta creada! Redirigiendo...</span>";
+                    // Temporizador para mejorar la experiencia de usuario (UX)
+                    setTimeout(() => {
+                        window.location.href = "login.php";
+                    }, 2000);
+                } else {
+                    mensaje.innerHTML = "<span style='color: red;'>Error: " + respuestaServidor + "</span>";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                mensaje.innerHTML = "Error de conexión con el servidor";
+            });
+}
+// Función para permitir solo números en el input
+function soloNumeros(e) {
+    var key = e.keyCode || e.which;
+    var teclado = String.fromCharCode(key);
+    var numeros = "0123456789";
+
+    // Si lo que se presiona no está en la lista de números, se bloquea
+    if (numeros.indexOf(teclado) == -1) {
+        return false;
+    }
 }
